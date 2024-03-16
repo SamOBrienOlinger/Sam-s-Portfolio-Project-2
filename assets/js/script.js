@@ -67,6 +67,35 @@ NAME_ELEMENT.addEventListener("focusout", () =>
   CURSE_BUTTONS[0].classList.remove("disabled")
 );
 
+// Enable the first curse button when the name is confirmed
+const confirmNameButton = document.getElementById('confirmName');
+confirmNameButton.addEventListener('click', function() {
+    const firstCurseButton = document.getElementById('firstButton');
+    firstCurseButton.disabled = false; // Enable the first 'curse' button
+    document.getElementById('step2').style.display = 'block'; // Show the second step
+});
+
+// Sequentially reveal each step and enable the next button
+const curseButtons = document.querySelectorAll('.curse-button');
+curseButtons.forEach(function(button, index) {
+    button.addEventListener('click', function() {
+        this.disabled = true; // Disable the current button after click
+
+        // Calculate the ID of the next step based on the current button's data-index
+        const nextStepId = 'step' + (parseInt(this.getAttribute('data-index'), 10) + 2);
+        const nextStep = document.getElementById(nextStepId);
+        if (nextStep) {
+            nextStep.style.display = 'block'; // Show the next step
+
+            // Find the next curse button within the next step and enable it
+            const nextButton = nextStep.querySelector('.curse-button');
+            if (nextButton) {
+                nextButton.disabled = false;
+            }
+        }
+    });
+});
+
 // **** GENERATE FULL HEX CODE ****
 const buttonFinal = document.getElementById("finalButton");
 buttonFinal.addEventListener("click", (e) => {
