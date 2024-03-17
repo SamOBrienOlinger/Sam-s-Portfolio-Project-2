@@ -16,7 +16,7 @@ let phraseListOne = [
 let phraseListTwo = [
   "be covered in",
   "be imprisoned in",
-  "be chained to a",
+  "be chained to",
   "be infected with",
   "be haunted by",
 ];
