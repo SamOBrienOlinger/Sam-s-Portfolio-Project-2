@@ -130,53 +130,97 @@ function genHex() {
   finalPhrase.innerHTML = `${name} ${FIRST_PHRASE.innerHTML} ${SECOND_PHRASE.innerHTML} ${THIRD_PHRASE.innerHTML}`;
 }
 
-/// Get the YouTube link element
-const youtubeLink = document.querySelector('a[aria-label="Visit our YouTube page"]');
 
-// Add an event listener to the YouTube link
-youtubeLink.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default behavior of following the link
 
-    // Get the final phrase from the HTML
-    var finalPhraseElement = document.getElementById('finalResult');
-    var finalPhrase = '';
 
-    // Check if the element exists before accessing its innerText property
-    if (finalPhraseElement) {
-        finalPhrase = finalPhraseElement.innerText.trim();
-    } else {
-        console.error("Element with id 'finalResult' not found.");
-        return; // Exit the function if the element is not found
-    }
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Your existing JavaScript code for hex generation and UI control
+
+//   // Get the YouTube link element and add an event listener for the click event
+//   const youtubeLink = document.querySelector('a[aria-label="Visit our YouTube page"]');
+//   youtubeLink.addEventListener('click', function(event) {
+//       event.preventDefault(); // Prevent the default link behavior
+
+//       // Function to generate and display the canvas
+//       generateAndDisplayCanvas();
+//   });
+// });
+
+// function generateAndDisplayCanvas() {
+//   // Create a new canvas element
+//   const canvas = document.createElement('canvas');
+//   canvas.width = 400;
+//   canvas.height = 200;
+
+//   // Get the canvas context
+//   const ctx = canvas.getContext('2d');
+//   ctx.fillStyle = '#FFFFFF'; // Optional: Fill the canvas with a white background
+//   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+//   // Set text properties
+//   ctx.fillStyle = '#000000'; // Black color for the text
+//   ctx.font = '16px Arial';
+//   ctx.textAlign = 'center';
+//   ctx.textBaseline = 'middle';
+
+//   // Add text to the canvas
+//   const text = 'This is your custom Hex!';
+//   ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+//   // Append the canvas to the body or a specific element
+//   document.body.appendChild(canvas);
+// }
+
+
+
+
+// Assuming 'finalPhrase' is the text you want to display on the canvas
+let finalPhrase1 = document.getElementById('finalResult').innerText.trim();
+console.log(finalPhrase1);
+let finalPhrase = 'This should be the obtained phrase but is not yet';
+
+function openPopupWithCanvas(finalPhrase) {
+    // Open a new mini window
+    const popup = window.open('', 'popup', 'width=600,height=400');
+
+    // Add some basic HTML structure to the popup
+    popup.document.write('<!DOCTYPE html><html lang="en"><head><title>Hex Canvas</title></head><body></body></html>');
 
     // Create a canvas element
-    var canvas = document.createElement('canvas');
+    const canvas = popup.document.createElement('canvas');
+    canvas.width = 580; // Adjust as per your requirement
+    canvas.height = 380; // Adjust as per your requirement
+    popup.document.body.appendChild(canvas);
 
-    // Set canvas dimensions
-    canvas.width = 400; // Width of the canvas
-    canvas.height = 200; // Height of the canvas
+    // Style the canvas (and potentially the window) here
+    // For example, setting a background color or adding a CSS file
+    canvas.style.background = '#fff'; // Example background color
 
-    // Get the drawing context
-    var ctx = canvas.getContext('2d');
+    // Get the canvas context to draw
+    const ctx = canvas.getContext('2d');
 
-    // Clear any previous content
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Set font properties
-    ctx.font = '20px Arial';
-    ctx.fillStyle = 'black'; // Set text color
-
-    // Calculate text width and height
-    var textWidth = ctx.measureText(finalPhrase).width;
-    var textHeight = 20; // You may need to adjust this based on your font size
-
-    // Calculate text position to center it on the canvas
-    var x = (canvas.width - textWidth) / 2;
-    var y = (canvas.height - textHeight) / 2;
+    // Set your styles for the text
+    ctx.fillStyle = '#000'; // Black color for the text
+    ctx.font = '20px Arial'; // Example font style
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
 
     // Draw the text on the canvas
-    ctx.fillText(finalPhrase, x, y);
+    ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
 
-    // Append the canvas to the document body or any desired location
-    document.body.appendChild(canvas);
+    // Now, let's load and draw images (like shamrocks and leprechauns)
+    const shamrockImage = new Image();
+    shamrockImage.onload = function() {
+        // Example: draw shamrock in the top-left corner of the canvas
+        ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust position and size as needed
+    };
+    shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
+}
+
+// Assuming you have the YouTube link event listener set up to open this popup
+const youtubeLink = document.querySelector('a[aria-label="Visit our YouTube page"]');
+youtubeLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    openPopupWithCanvas(finalPhrase); // Call this function with the final phrase
 });
