@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Life+Savers:wght@400;700;800');
+
 
 body {
 	box-sizing: border-box;
@@ -10,16 +13,22 @@ body {
 
 h1 {
     font-size: 3rem;
-    font-style: italic;
-    color: rgb(22, 219, 22);
+    font-family: 'Macondo Swash Caps';
+    color: #169b62;
     margin: 20px auto;
     text-align: center;
-    font-family: 'Irish Grover';
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: -1px -1px 0 whitesmoke, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 h2 {
     color: rgb(22, 219, 22);
+}
+
+h3 {
+    font-family: 'Macondo Swash Caps';
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px #000, 3px 3px 5px orange;
+    color: orange;
 }
 
 #guide {
@@ -50,12 +59,15 @@ h2 {
 
 .steps {
     color: orange;
+    font-family: 'Macondo Swash Caps';
+    font-size: 2rem;
 }
 
 input {
     height: auto;
     width: auto;
     font-size: 2rem;
+    font-family: 'Irish Grover';
 }
 
 b {
@@ -83,6 +95,13 @@ p {
 section {
     margin: 20px auto;
     text-align: center;
+}
+
+.sections h2 span.steps img {
+    vertical-align: middle;
+    width: 1em;
+    height: auto;
+    margin-right: 0.5em; 
 }
 
 a {
@@ -131,13 +150,13 @@ a {
 }
 
 #fullPhrase {
-    color: chartreuse;
+    color: #169b62;
     font-size: 3rem;
     font-style: normal;
 }
 
 button {
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-family: 'Irish Grover';
 }
 
 button#refresh p {
@@ -167,7 +186,7 @@ button#refresh p {
 .fab,
 .far {
     font-weight: 400;
-    color: rgb(22, 219, 22);
+    color: #169b62;
 }
 
 .disabled {
@@ -198,17 +217,6 @@ button#refresh p {
 }
 
 /* Navbar */
-/* .navbar {
-    background-color: green;
-    color: white;
-    padding: 10px;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-right: 10px;
-} */
 
 .irish-flag-navbar {
     display: flex;
@@ -278,4 +286,12 @@ footer {
     background-color: orange;
     padding: 20px;
     text-align: center;
+}
+
+footer p {
+    color: whitesmoke;
+}
+
+footer h2 {
+    color: #169b62;
 }
