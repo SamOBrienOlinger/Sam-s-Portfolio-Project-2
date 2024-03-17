@@ -132,56 +132,124 @@ function genHex() {
   document.getElementById('create-canvas').style.display = 'block';
 }
 
-function openPopupWithCanvas(finalPhrase) {
-    // Open a new mini window
-    const popup = window.open('', 'popup', 'width=600,height=400');
+// function openPopupWithCanvas(finalPhrase) {
+//     // Open a new mini window
+//     const popup = window.open('', 'popup', 'width=600,height=400');
 
-    // Add some basic HTML structure to the popup
-    popup.document.write('<!DOCTYPE html><html lang="en"><head><title>Hex Canvas</title></head><body></body></html>');
+//     // Add some basic HTML structure to the popup
+//     popup.document.write('<!DOCTYPE html><html lang="en"><head><title>Hex Canvas</title></head><body></body></html>');
 
-    // Create a canvas element
-    const canvas = popup.document.createElement('canvas');
-    canvas.width = 580; // Adjust as per your requirement
-    canvas.height = 380; // Adjust as per your requirement
-    popup.document.body.appendChild(canvas);
+//     // Create a canvas element
+//     const canvas = popup.document.createElement('canvas');
+//     canvas.width = 580; // Adjust as per your requirement
+//     canvas.height = 380; // Adjust as per your requirement
+//     popup.document.body.appendChild(canvas);
 
-    // Style the canvas (and potentially the window) here
-    // For example, setting a background color or adding a CSS file
-    canvas.style.background = '#fff'; // Example background color
+//     // Style the canvas (and potentially the window) here
+//     // For example, setting a background color or adding a CSS file
+//     canvas.style.background = '#fff'; // Example background color
 
-    // Get the canvas context to draw
+//     // Get the canvas context to draw
+//     const ctx = canvas.getContext('2d');
+
+//     // Set your styles for the text
+//     ctx.fillStyle = '#000'; // Black color for the text
+//     ctx.font = '20px Arial'; // Example font style
+//     ctx.textAlign = 'center';
+//     ctx.textBaseline = 'middle';
+
+//     // Draw the text on the canvas
+//     ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
+
+//     const shamrockImage = new Image();
+//     shamrockImage.onload = function() {
+//         // Example: draw shamrock in the top-left corner of the canvas
+//         ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust position and size as needed
+//     };
+//     shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
+// }
+
+// // Assuming you have the YouTube link event listener set up to open this popup
+// const canvasCreate = document.getElementById('create-canvas');
+// canvasCreate.addEventListener('click', function(event) {
+//     event.preventDefault(); // Prevent the default link behavior
+//   // Assuming 'finalPhrase' is the text you want to display on the canvas
+//   let finalPhrase = document.getElementById('finalResult').innerText.trim();
+
+//   openPopupWithCanvas(finalPhrase); // Call this function with the final phrase
+//   document.getElementById('download-link').style.display = 'block';
+
+//   // Event listener for the "Download Image" link
+//   document.getElementById('download-link').addEventListener('click', function() {
+function drawOnMainCanvas(finalPhrase) {
+    const canvas = document.getElementById('canvas');
+    if (!canvas) {
+        console.error('Canvas element not found!');
+        return;
+    }
+    canvas.style.display = 'block'; // Make sure the canvas is visible
     const ctx = canvas.getContext('2d');
-
-    // Set your styles for the text
+  
+    // Clear the canvas before drawing new content
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    // Your existing drawing logic here, for example:
     ctx.fillStyle = '#000'; // Black color for the text
     ctx.font = '20px Arial'; // Example font style
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-
-    // Draw the text on the canvas
     ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
-
+  
     const shamrockImage = new Image();
     shamrockImage.onload = function() {
-        // Example: draw shamrock in the top-left corner of the canvas
-        ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust position and size as needed
+        ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust as needed
     };
     shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
 }
 
-// Assuming you have the YouTube link event listener set up to open this popup
+// Adjust event listeners as needed
 const canvasCreate = document.getElementById('create-canvas');
 canvasCreate.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
-  // Assuming 'finalPhrase' is the text you want to display on the canvas
-  let finalPhrase = document.getElementById('finalResult').innerText.trim();
-
-  openPopupWithCanvas(finalPhrase); // Call this function with the final phrase
-  document.getElementById('download-link').style.display = 'block';
-
-  // Event listener for the "Download Image" link
-  document.getElementById('download-link').addEventListener('click', function() {
-      // Presumably handle the image download here
-      document.querySelector('.social-networks').style.display = 'block';
-  });
+    let finalPhrase = document.getElementById('finalResult').innerText.trim();
+  
+    drawOnMainCanvas(finalPhrase); // Call this function with the final phrase
+    document.getElementById('download-link').style.display = 'block';
 });
+
+// Adjust the "Download Image" link event listener as before
+document.getElementById('download-link').addEventListener('click', function() {
+    console.log('we are here')
+    const canvas = document.getElementById('canvas');
+    // Use the original MIME type without replacement to ensure compatibility
+    const image = canvas.toDataURL('image/png');
+  
+    // Create a temporary link to trigger the download
+    const link = document.createElement('a');
+    link.download = 'canvas-image.png';
+    link.href = image;
+    document.body.appendChild(link); // Append to body to ensure visibility in the DOM
+    link.click();
+    document.body.removeChild(link); // Clean up by removing the element after clicking
+  
+    // Show social media icons for further action
+    document.querySelector('.social-networks').style.display = 'block';
+  });
+
+
+// document.getElementById('downloadBtn').addEventListener('click', function() {
+//   const canvas = document.getElementById('yourCanvasElement');
+//   // Use the original MIME type without replacement to ensure compatibility
+//   const image = canvas.toDataURL('image/png');
+
+//   // Create a temporary link to trigger the download
+//   const link = document.createElement('a');
+//   link.download = 'canvas-image.png';
+//   link.href = image;
+//   document.body.appendChild(link); // Append to body to ensure visibility in the DOM
+//   link.click();
+//   document.body.removeChild(link); // Clean up by removing the element after clicking
+
+//   // Show social media icons for further action
+//   document.querySelector('.social-networks').style.display = 'block';
+// });
