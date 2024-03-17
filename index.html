@@ -150,7 +150,7 @@
          <div>
             <a href="#top">
               <div id="refresh" aria-label="Back to the Top and create a new Hex">
-                <b>Click Here to Go Again! Sure why not Hex that eejit again, don't they deserve it?!</b>
+                <b>There's still plenty of magic available. Click here to hex that eejit again, or choose a new victim...</b>
               </div> 
             </a> 
          </div>
@@ -160,14 +160,25 @@
          <p aria-label="Post your Hex and Tag your Favourite Nemesis!">
             Just for the craic, Share your Hex and Tag your Favourite Nemesis!
          </p>
+         <div id="create-canvas" style="display: none"><a
+            aria-label="Create a shareable image from the hex"
+            >
+         <i class="fas fa-magic"></i>Click here to transform your hex into a shareable image</a>
+         </div>
+         <canvas id="canvas"></canvas>
+         <div id="download-link" style="display: none"><a
+            href="#"
+            aria-label="Download the image for sharing"
+            ><i class="fa fa-download"></i>Click here to download the image to share
+         </a></div>
          <div id="green-arrow"></div>
-         <ul class="social-networks">
+         <ul class="social-networks" style="display: none">
             <li>
                <a
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener"
-                  aria-label="Visit our Facebook page"
+                  aria-label="Use facebook to share your hex"
                   ><i class="fab fa-facebook"></i
                   ></a>
             </li>
@@ -176,17 +187,8 @@
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener"
-                  aria-label="Visit our Twitter page"
+                  aria-label="Use twitter to share your hex"
                   ><i class="fab fa-twitter-square"></i
-                  ></a>
-            </li>
-            <li>
-               <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Visit our YouTube page"
-                  ><i class="fab fa-youtube-square"></i
                   ></a>
             </li>
             <li>
@@ -194,8 +196,17 @@
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener"
-                  aria-label="Visit our Instagram page"
+                  aria-label="Use instagram to share your hex"
                   ><i class="fab fa-instagram"></i
+                  ></a>
+            </li>
+            <li>
+               <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Use whatsapp to share your hex"
+                  ><i class="fab fa-whatsapp"></i></i
                   ></a>
             </li>
          </ul>
