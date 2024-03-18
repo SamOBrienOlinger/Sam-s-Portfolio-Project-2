@@ -27,7 +27,8 @@ let phraseListThree = [
   "a lake of boiling stout!",
   "an ocean of poison whiskey for infinity!",
   "rotten potatoes for ten years!",
-  "clothes with itchy labels!"
+  "clothes with itchy labels!",
+  "a severe allergy to Guinness!"
 ];
 
 let phraseListIndexMap = [phraseListOne, phraseListTwo, phraseListThree];
@@ -45,9 +46,9 @@ let generateCurse = function (e) {
 
   if (buttonIndex != 2) {
     CURSE_BUTTONS[buttonIndex + 1].classList.remove("disabled");
-    } else {
-      buttonFinal.classList.remove("disabled");
-    }
+  } else {
+    buttonFinal.classList.remove("disabled");
+  }
 };
 
 // **** GENERATE RANDOM PHRASE FROM ARRAYS CODE ****
@@ -70,37 +71,37 @@ NAME_ELEMENT.addEventListener("focusout", () =>
 
 // Enable the first curse button when the name is confirmed
 const confirmNameButton = document.getElementById('confirmName');
-confirmNameButton.addEventListener('click', function() {
-    const firstCurseButton = document.getElementById('firstButton');
-    firstCurseButton.disabled = false; // Enable the first 'curse' button
-    document.getElementById('step2').style.display = 'block'; // Show the second step
+confirmNameButton.addEventListener('click', function () {
+  const firstCurseButton = document.getElementById('firstButton');
+  firstCurseButton.disabled = false; // Enable the first 'curse' button
+  document.getElementById('step2').style.display = 'block'; // Show the second step
 });
 
 // Sequentially reveal each step and enable the next button
 const curseButtons = document.querySelectorAll('.curse-button');
-curseButtons.forEach(function(button, index) {
-    button.addEventListener('click', function() {
-        this.disabled = true; // Disable the current button after click
+curseButtons.forEach(function (button, index) {
+  button.addEventListener('click', function () {
+    this.disabled = true; // Disable the current button after click
 
-        // Calculate the ID of the next step based on the current button's data-index
-        const nextStepId = 'step' + (parseInt(this.getAttribute('data-index'), 10) + 2);
-        const nextStep = document.getElementById(nextStepId);
-        if (nextStep) {
-            nextStep.style.display = 'block'; // Show the next step
+    // Calculate the ID of the next step based on the current button's data-index
+    const nextStepId = 'step' + (parseInt(this.getAttribute('data-index'), 10) + 2);
+    const nextStep = document.getElementById(nextStepId);
+    if (nextStep) {
+      nextStep.style.display = 'block'; // Show the next step
 
-            // Find the next curse button within the next step and enable it
-            const nextButton = nextStep.querySelector('.curse-button');
-            if (nextButton) {
-                nextButton.disabled = false;
-            }
-        }
-    });
+      // Find the next curse button within the next step and enable it
+      const nextButton = nextStep.querySelector('.curse-button');
+      if (nextButton) {
+        nextButton.disabled = false;
+      }
+    }
+  });
 });
 
 // **** GENERATE FULL HEX CODE ****
 const buttonFinal = document.getElementById("finalButton");
 buttonFinal.addEventListener("click", (e) => {
-  
+
   if (checkName()) {
     genHex();
   }
@@ -110,9 +111,9 @@ buttonFinal.addEventListener("click", (e) => {
 // **** ENSURE USER INPUTS TEXT TO START HEX CODE ****
 function checkName() {
   if (document.getElementById("name").value !== "") {
-    
+
     return true;
-  } 
+  }
 
   alert("please enter your Nemesis' name");
   return false;
@@ -127,129 +128,109 @@ refreshPage.addEventListener("click", (e) => {
 function genHex() {
   let finalPhrase = document.getElementById("finalResult");
   let name = document.getElementById("name").value;
-
   finalPhrase.innerHTML = `${name} ${FIRST_PHRASE.innerHTML} ${SECOND_PHRASE.innerHTML} ${THIRD_PHRASE.innerHTML}`;
   document.getElementById('create-canvas').style.display = 'block';
 }
 
-// function openPopupWithCanvas(finalPhrase) {
-//     // Open a new mini window
-//     const popup = window.open('', 'popup', 'width=600,height=400');
-
-//     // Add some basic HTML structure to the popup
-//     popup.document.write('<!DOCTYPE html><html lang="en"><head><title>Hex Canvas</title></head><body></body></html>');
-
-//     // Create a canvas element
-//     const canvas = popup.document.createElement('canvas');
-//     canvas.width = 580; // Adjust as per your requirement
-//     canvas.height = 380; // Adjust as per your requirement
-//     popup.document.body.appendChild(canvas);
-
-//     // Style the canvas (and potentially the window) here
-//     // For example, setting a background color or adding a CSS file
-//     canvas.style.background = '#fff'; // Example background color
-
-//     // Get the canvas context to draw
-//     const ctx = canvas.getContext('2d');
-
-//     // Set your styles for the text
-//     ctx.fillStyle = '#000'; // Black color for the text
-//     ctx.font = '20px Arial'; // Example font style
-//     ctx.textAlign = 'center';
-//     ctx.textBaseline = 'middle';
-
-//     // Draw the text on the canvas
-//     ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
-
-//     const shamrockImage = new Image();
-//     shamrockImage.onload = function() {
-//         // Example: draw shamrock in the top-left corner of the canvas
-//         ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust position and size as needed
-//     };
-//     shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
-// }
-
-// // Assuming you have the YouTube link event listener set up to open this popup
-// const canvasCreate = document.getElementById('create-canvas');
-// canvasCreate.addEventListener('click', function(event) {
-//     event.preventDefault(); // Prevent the default link behavior
-//   // Assuming 'finalPhrase' is the text you want to display on the canvas
-//   let finalPhrase = document.getElementById('finalResult').innerText.trim();
-
-//   openPopupWithCanvas(finalPhrase); // Call this function with the final phrase
-//   document.getElementById('download-link').style.display = 'block';
-
-//   // Event listener for the "Download Image" link
-//   document.getElementById('download-link').addEventListener('click', function() {
-function drawOnMainCanvas(finalPhrase) {
-    const canvas = document.getElementById('canvas');
-    if (!canvas) {
-        console.error('Canvas element not found!');
-        return;
-    }
-    canvas.style.display = 'block'; // Make sure the canvas is visible
-    const ctx = canvas.getContext('2d');
-  
-    // Clear the canvas before drawing new content
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-    // Your existing drawing logic here, for example:
-    ctx.fillStyle = '#000'; // Black color for the text
-    ctx.font = '20px Arial'; // Example font style
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
-  
-    const shamrockImage = new Image();
-    shamrockImage.onload = function() {
-        ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust as needed
-    };
-    shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
+function prepareFinalPhrase() {
+  const name = document.getElementById('name').value;
+  const firstPhrase = FIRST_PHRASE.innerHTML;
+  const secondPhrase = SECOND_PHRASE.innerHTML;
+  const thirdPhrase = THIRD_PHRASE.innerHTML;
+  console.log(name)
+  console.log(firstPhrase)
+  console.log(secondPhrase)
+  console.log(thirdPhrase)
+  document.getElementById('create-canvas').style.display = 'block';
+  // Store the phrases in an array
+  return [name, firstPhrase, secondPhrase, thirdPhrase];
 }
+
+function drawOnMainCanvas(phrases) {
+  const canvas = document.getElementById('canvas');
+  if (!canvas) {
+    console.error('Canvas element not found!');
+    return;
+  }
+  canvas.style.display = 'block';
+
+  // Define scale for high DPI screens
+  const scale = window.devicePixelRatio; // Define scale based on device pixel ratio
+  canvas.width = 600 * scale;
+  canvas.height = 400 * scale;
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale); // Scale the context to match the device pixel ratio
+
+  // Clear the canvas before drawing new content
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Set canvas styles
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width / scale, canvas.height / scale); // Adjust fillRect to consider scale
+
+  const shamrockImage = new Image();
+  shamrockImage.onload = function () {
+    // Drawing shamrocks in the top corners at 'y = 10'
+    ctx.drawImage(shamrockImage, 10, 10, 100, 100); // Top left corner
+    ctx.drawImage(shamrockImage, canvas.width / scale - 110, 10, 100, 100); // Top right corner
+    ctx.drawImage(shamrockImage, 10, canvas.height / scale - 110, 100, 100); // Bottom left corner
+    ctx.drawImage(shamrockImage, canvas.width / scale - 110, canvas.height / scale - 110, 100, 100); // Bottom right corner
+  };
+  shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
+
+  const leprechaunImage = new Image();
+  leprechaunImage.onload = function () {
+    const newWidth = 100 * (5 / 4); // 2/3 of the original size
+    const newHeight = 100 * (5 / 4);
+    // Aligning the leprechaun image with the shamrocks at 'y = 10'
+    ctx.drawImage(leprechaunImage, (canvas.width / scale - newWidth) / 2, 10, newWidth, newHeight);
+  };
+  leprechaunImage.src = 'assets/css/Images/angry-leprechaun-bg-free.png';
+
+  // Text settings
+  ctx.fillStyle = 'whitesmoke';
+  ctx.font = '28px Irish Grover';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  // Adjust the starting y position for the text to be below the leprechaun image
+  let y = 150; // Adjust based on the height of the leprechaun image
+
+  // Draw each phrase on a new line
+  for (let i = 0; i < phrases.length; i++) {
+    ctx.fillText(phrases[i], canvas.width / (2 * scale), y);
+    y += 32;
+  }
+}
+
 
 // Adjust event listeners as needed
 const canvasCreate = document.getElementById('create-canvas');
-canvasCreate.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    let finalPhrase = document.getElementById('finalResult').innerText.trim();
-  
-    drawOnMainCanvas(finalPhrase); // Call this function with the final phrase
-    document.getElementById('download-link').style.display = 'block';
+canvasCreate.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent the default link behavior
+  let phrases = prepareFinalPhrase(); // Get the array of phrases
+  console.log(phrases)
+  drawOnMainCanvas(phrases); // Pass the array to the drawing function
+  document.getElementById('download-link').style.display = 'block';
 });
 
+
 // Adjust the "Download Image" link event listener as before
-document.getElementById('download-link').addEventListener('click', function() {
-    console.log('we are here')
-    const canvas = document.getElementById('canvas');
-    // Use the original MIME type without replacement to ensure compatibility
-    const image = canvas.toDataURL('image/png');
-  
-    // Create a temporary link to trigger the download
-    const link = document.createElement('a');
-    link.download = 'canvas-image.png';
-    link.href = image;
-    document.body.appendChild(link); // Append to body to ensure visibility in the DOM
-    link.click();
-    document.body.removeChild(link); // Clean up by removing the element after clicking
-  
-    // Show social media icons for further action
-    document.querySelector('.social-networks').style.display = 'block';
-  });
+document.getElementById('download-link').addEventListener('click', function () {
+  console.log('we are here')
+  const canvas = document.getElementById('canvas');
+  // Use the original MIME type without replacement to ensure compatibility
+  const image = canvas.toDataURL('image/png');
 
+  // Create a temporary link to trigger the download
+  const link = document.createElement('a');
+  link.download = 'canvas-image.png';
+  link.href = image;
+  document.body.appendChild(link); // Append to body to ensure visibility in the DOM
+  link.click();
+  document.body.removeChild(link); // Clean up by removing the element after clicking
 
-// document.getElementById('downloadBtn').addEventListener('click', function() {
-//   const canvas = document.getElementById('yourCanvasElement');
-//   // Use the original MIME type without replacement to ensure compatibility
-//   const image = canvas.toDataURL('image/png');
-
-//   // Create a temporary link to trigger the download
-//   const link = document.createElement('a');
-//   link.download = 'canvas-image.png';
-//   link.href = image;
-//   document.body.appendChild(link); // Append to body to ensure visibility in the DOM
-//   link.click();
-//   document.body.removeChild(link); // Clean up by removing the element after clicking
-
-//   // Show social media icons for further action
-//   document.querySelector('.social-networks').style.display = 'block';
-// });
+  // Show social media icons for further action
+  document.querySelector('.social-networks').style.display = 'block';
+});

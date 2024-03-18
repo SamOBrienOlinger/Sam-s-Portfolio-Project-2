@@ -120,7 +120,6 @@ a, button {
     margin-right: auto;
     margin-top: 2rem;
     width: fit-content;
-    background-color: darkgrey;
 }
 
 .output {
@@ -288,9 +287,26 @@ button#refresh p {
 
 /* Footer */
 footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: orange;
     padding: 20px;
     text-align: center;
+}
+
+.canvas-container {
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#canvas {
+    width: 50%; /* or any size that fits your layout */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the canvas */
 }
 
 footer p {
