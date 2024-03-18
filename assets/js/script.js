@@ -135,11 +135,24 @@ function genHex() {
 
 // **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
 function generateUniqueLink() {
-    // Generate a unique link (example implementation)
-    const uniqueLink = 'https://example.com/' + Math.floor(Math.random() * 10000000000000000);
+    // Step 1: Clone the original canvas element
+    const originalCanvas = document.getElementById('canvas');
+    const clonedCanvas = originalCanvas.cloneNode();
 
-    // Log the generated unique link to the console
+    // Step 2: Render the content of the cloned canvas to an image using toDataURL()
+    const canvasDataURL = clonedCanvas.toDataURL();
+
+    // Step 3: Generate a unique URL for the image using the data URL
+    const uniqueLink = 'https://samobrienolinger.github.io/The-Irish-Hexanator/image/' + Math.floor(Math.random() * 10000000000000000);
+
+    // Step 4: Set the cloned canvas's src attribute to the generated data URL
+    clonedCanvas.src = canvasDataURL;
+
+    // Append the cloned canvas to the DOM if needed
+    document.body.appendChild(clonedCanvas);
+
     console.log('Generated unique link:', uniqueLink);
+
 
     // Share unique link via social media platforms
     const facebookShareLink = document.getElementById('facebook-share');
@@ -161,7 +174,7 @@ function generateUniqueLink() {
     if (whatsappShareLink) {
         whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
     }
-}
+ }
 
 // Assuming the HTML structure contains social media share buttons with IDs:
 // facebook-share, twitter-share, instagram-share, whatsapp-share
@@ -170,46 +183,21 @@ function generateUniqueLink() {
 // Call the generateUniqueLink function when the final button is clicked
 buttonFinal.addEventListener('click', generateUniqueLink);
 
-// Function to draw on the main canvas
-function drawOnMainCanvas(finalPhrase) {
-    const canvas = document.getElementById('canvas');
-    if (!canvas) {
-        console.error('Canvas element not found!');
-        return;
-    }
-    canvas.style.display = 'block'; // Make sure the canvas is visible
-    const ctx = canvas.getContext('2d');
-  
-    // Clear the canvas before drawing new content
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-    // Your existing drawing logic here, for example:
-    ctx.fillStyle = '#000'; // Black color for the text
-    ctx.font = '20px Arial'; // Example font style
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
-  
-    const shamrockImage = new Image();
-    shamrockImage.onload = function() {
-        ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust as needed
-    };
-    shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
-
 function prepareFinalPhrase() {
   const name = document.getElementById('name').value;
   const firstPhrase = FIRST_PHRASE.innerHTML;
   const secondPhrase = SECOND_PHRASE.innerHTML;
   const thirdPhrase = THIRD_PHRASE.innerHTML;
-  console.log(name)
-  console.log(firstPhrase)
-  console.log(secondPhrase)
-  console.log(thirdPhrase)
+  console.log(name);
+  console.log(firstPhrase);
+  console.log(secondPhrase);
+  console.log(thirdPhrase);
   document.getElementById('create-canvas').style.display = 'block';
   // Store the phrases in an array
   return [name, firstPhrase, secondPhrase, thirdPhrase];
 }
 
+// Function to draw on the main canvas
 function drawOnMainCanvas(phrases) {
   const canvas = document.getElementById('canvas');
   if (!canvas) {
@@ -219,7 +207,7 @@ function drawOnMainCanvas(phrases) {
   canvas.style.display = 'block';
 
   // Define scale for high DPI screens
-  const scale = window.devicePixelRatio; // Define scale based on device pixel ratio
+  const scale = window.devicePixelRatio || 1; // Define scale based on device pixel ratio, default to 1 if not available
   canvas.width = 600 * scale;
   canvas.height = 400 * scale;
 
@@ -233,9 +221,10 @@ function drawOnMainCanvas(phrases) {
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width / scale, canvas.height / scale); // Adjust fillRect to consider scale
 
+  // Drawing additional elements (shamrock and leprechaun images)
   const shamrockImage = new Image();
   shamrockImage.onload = function () {
-    // Drawing shamrocks in the top corners at 'y = 10'
+    // Draw shamrocks in each corner of the canvas
     ctx.drawImage(shamrockImage, 10, 10, 100, 100); // Top left corner
     ctx.drawImage(shamrockImage, canvas.width / scale - 110, 10, 100, 100); // Top right corner
     ctx.drawImage(shamrockImage, 10, canvas.height / scale - 110, 100, 100); // Bottom left corner
@@ -269,6 +258,7 @@ function drawOnMainCanvas(phrases) {
 }
 
 
+
 // Adjust event listeners as needed
 const canvasCreate = document.getElementById('create-canvas');
 canvasCreate.addEventListener('click', function (event) {
@@ -297,4 +287,3 @@ document.getElementById('download-link').addEventListener('click', function () {
   // Show social media icons for further action
   document.querySelector('.social-networks').style.display = 'block';
 });
-
