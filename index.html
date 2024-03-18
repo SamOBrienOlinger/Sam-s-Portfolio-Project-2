@@ -78,7 +78,7 @@
          </div>
          <div>
             <button
-               class="button curse-button disabled"
+               class="button curse-button disabled active-flicker"
                data-index="1"
                id="firstButton"
                aria-label="Start your Hex!"
@@ -99,7 +99,7 @@
          </div>
          <div>
             <button
-               class="button curse-button disabled"
+               class="button curse-button disabled active-flicker"
                data-index="2"
                id="secondButton"
                aria-label="The middle of your Hex!"
@@ -121,7 +121,7 @@
          </div>
          <div>
             <button
-               class="button curse-button disabled"
+               class="button curse-button disabled active-flicker"
                data-index="3"
                id="thirdButton"
                aria-label="The last part of your Hex"
@@ -138,7 +138,7 @@
       <section id="step5" style="display: none">
          <div>
             <div>
-               <button id="finalButton"  class="disabled" aria-label="Cast your Hex">
+               <button id="finalButton"  class="disabled active-flicker" aria-label="Cast your Hex">
                   <b id="fullPhrase">
                      Click Here - "Your Hex is Ready to be Cast"</b>
                </button>
@@ -149,8 +149,8 @@
          </div>
          <div>
             <a href="#top">
-              <div id="refresh" aria-label="Back to the Top and create a new Hex">
-                <b>There's still plenty of magic available. Click here to hex that eejit again, or choose a new victim...</b>
+              <div id="refresh" aria-label="Back to the Top and create a new Hex" style="display: none">
+                <b class="glow-text">There's still plenty of magic available. Click here to hex that eejit again, or choose a new victim...</b>
               </div> 
             </a> 
          </div>
@@ -160,12 +160,12 @@
          <p aria-label="Post your Hex and Tag your Favourite Nemesis!">
             Just for the craic, Share your Hex and Tag your Favourite Nemesis!
          </p>
-         <div id="create-canvas">
+         <div id="create-canvas" class="glow-text" style="display: none">
             
             <a
             aria-label="Create a shareable image from the hex"
             >
-         <i class="fas fa-magic"></i>Click here to transform your hex into a shareable image</a>
+         <i class="fas fa-magic"></i> Click here to transform your hex into a shareable image</a>
          </div>
          <div class="canvas-container">
             <canvas id="canvas"></canvas>
@@ -173,7 +173,8 @@
          <div id="download-link" style="display: none"><a
             href="#"
             aria-label="Download the image for sharing"
-            ><i class="fa fa-download"></i>Click here to download the image to share
+            class="glow-text"
+            ><i class="fa fa-download"></i> Click here to download the image to share
          </a></div>
          <div id="green-arrow"></div>
          <ul class="social-networks" style="display: none">

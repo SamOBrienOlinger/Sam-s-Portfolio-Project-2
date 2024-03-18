@@ -115,15 +115,28 @@ a, button {
     cursor: pointer;
 }
 
-@keyframes sparkle {
-    0% { box-shadow: 0 0 10px 2px rgba(255,255,255,0.5); }
-    50% { box-shadow: 0 0 15px 5px rgba(255,255,255,1); }
-    100% { box-shadow: 0 0 10px 2px rgba(255,255,255,0.5); }
+.glow-text {
+    animation: glow-animation 1.5s infinite alternate; /* Quicker flicker */
   }
   
-  .sparkly-effect {
-    animation: sparkle 0.5s ease-in-out forwards;
-  }  
+  @keyframes glow-animation {
+    from {
+      text-shadow: 0 0 0px #fff;
+    }
+    to {
+      text-shadow: 0 0 3px #fff;
+    }
+  }
+  
+  .active-flicker {
+    animation: active-flicker 0.3s infinite alternate;
+  }
+  
+  @keyframes active-flicker {
+    from { box-shadow: 0 0 10px whitesmoke; }
+    to { box-shadow: 0 0 5px #169b62; }
+  }
+  
 
 #refresh {
     margin-left: auto;

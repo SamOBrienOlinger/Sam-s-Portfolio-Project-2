@@ -82,7 +82,7 @@ const curseButtons = document.querySelectorAll('.curse-button');
 curseButtons.forEach(function (button, index) {
   button.addEventListener('click', function () {
     this.disabled = true; // Disable the current button after click
-
+    this.classList.remove('active-flicker');
     // Calculate the ID of the next step based on the current button's data-index
     const nextStepId = 'step' + (parseInt(this.getAttribute('data-index'), 10) + 2);
     const nextStep = document.getElementById(nextStepId);
@@ -131,6 +131,8 @@ function genHex() {
   let name = document.getElementById("name").value;
   finalPhrase.innerHTML = `${name} ${FIRST_PHRASE.innerHTML} ${SECOND_PHRASE.innerHTML} ${THIRD_PHRASE.innerHTML}`;
   document.getElementById('create-canvas').style.display = 'block';
+  document.getElementById('refresh').style.display = 'block';
+  document.getElementById('refresh').classList.add('glow-text'); 
 }
 
 // **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
