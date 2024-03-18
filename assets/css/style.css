@@ -79,8 +79,11 @@ b {
 }
 
 div#refresh b {
+    font-family: 'Macondo Swash Caps';
     text-shadow: 1px 1px 1px #000, 3px 3px 5px orange;
     color: orange;
+    background-color: #000;
+    font-style: normal;
 }
 
 p {
@@ -106,6 +109,10 @@ section {
 
 a {
     color: green;
+}
+
+a, button {
+    cursor: pointer;
 }
 
 #refresh {
@@ -151,7 +158,7 @@ a {
 
 #fullPhrase {
     color: #169b62;
-    font-size: 3rem;
+    font-size: 2rem;
     font-style: normal;
 }
 
@@ -194,7 +201,6 @@ button#refresh p {
     pointer-events: none;
 }
 
-/* Define your custom CSS styles here */
 .about-aj,
 .about-sam {
     display: flex;
@@ -217,7 +223,6 @@ button#refresh p {
 }
 
 /* Navbar */
-
 .irish-flag-navbar {
     display: flex;
     justify-content: space-around;
