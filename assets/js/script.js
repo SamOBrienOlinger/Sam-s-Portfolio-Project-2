@@ -104,6 +104,7 @@ buttonFinal.addEventListener("click", (e) => {
 
   if (checkName()) {
     genHex();
+    generateUniqueLink(); // Generate unique link when the final button is clicked
   }
 
 });
@@ -132,20 +133,71 @@ function genHex() {
   document.getElementById('create-canvas').style.display = 'block';
 }
 
+// **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
+function generateUniqueLink() {
+    // Step 1: Clone the original canvas element
+    const originalCanvas = document.getElementById('canvas');
+    const clonedCanvas = originalCanvas.cloneNode();
+
+    // Step 2: Render the content of the cloned canvas to an image using toDataURL()
+    const canvasDataURL = clonedCanvas.toDataURL();
+
+    // Step 3: Generate a unique URL for the image using the data URL
+    const uniqueLink = 'https://samobrienolinger.github.io/The-Irish-Hexanator/image/' + Math.floor(Math.random() * 10000000000000000);
+
+    // Step 4: Set the cloned canvas's src attribute to the generated data URL
+    clonedCanvas.src = canvasDataURL;
+
+    // Append the cloned canvas to the DOM if needed
+    document.body.appendChild(clonedCanvas);
+
+    console.log('Generated unique link:', uniqueLink);
+
+
+    // Share unique link via social media platforms
+    const facebookShareLink = document.getElementById('facebook-share');
+    if (facebookShareLink) {
+        facebookShareLink.href = 'https://facebook.com/share?url=' + encodeURIComponent(uniqueLink);
+    }
+
+    const twitterShareLink = document.getElementById('twitter-share');
+    if (twitterShareLink) {
+        twitterShareLink.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(uniqueLink);
+    }
+
+    const instagramShareLink = document.getElementById('instagram-share');
+    if (instagramShareLink) {
+        instagramShareLink.href = 'https://instagram.com/share?url=' + encodeURIComponent(uniqueLink);
+    }
+
+    const whatsappShareLink = document.getElementById('whatsapp-share');
+    if (whatsappShareLink) {
+        whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
+    }
+ }
+
+// Assuming the HTML structure contains social media share buttons with IDs:
+// facebook-share, twitter-share, instagram-share, whatsapp-share
+// Adjust the IDs accordingly if they are different.
+
+// Call the generateUniqueLink function when the final button is clicked
+buttonFinal.addEventListener('click', generateUniqueLink);
+
 function prepareFinalPhrase() {
   const name = document.getElementById('name').value;
   const firstPhrase = FIRST_PHRASE.innerHTML;
   const secondPhrase = SECOND_PHRASE.innerHTML;
   const thirdPhrase = THIRD_PHRASE.innerHTML;
-  console.log(name)
-  console.log(firstPhrase)
-  console.log(secondPhrase)
-  console.log(thirdPhrase)
+  console.log(name);
+  console.log(firstPhrase);
+  console.log(secondPhrase);
+  console.log(thirdPhrase);
   document.getElementById('create-canvas').style.display = 'block';
   // Store the phrases in an array
   return [name, firstPhrase, secondPhrase, thirdPhrase];
 }
 
+// Function to draw on the main canvas
 function drawOnMainCanvas(phrases) {
   const canvas = document.getElementById('canvas');
   if (!canvas) {
@@ -155,7 +207,7 @@ function drawOnMainCanvas(phrases) {
   canvas.style.display = 'block';
 
   // Define scale for high DPI screens
-  const scale = window.devicePixelRatio; // Define scale based on device pixel ratio
+  const scale = window.devicePixelRatio || 1; // Define scale based on device pixel ratio, default to 1 if not available
   canvas.width = 600 * scale;
   canvas.height = 400 * scale;
 
@@ -169,9 +221,10 @@ function drawOnMainCanvas(phrases) {
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width / scale, canvas.height / scale); // Adjust fillRect to consider scale
 
+  // Drawing additional elements (shamrock and leprechaun images)
   const shamrockImage = new Image();
   shamrockImage.onload = function () {
-    // Drawing shamrocks in the top corners at 'y = 10'
+    // Draw shamrocks in each corner of the canvas
     ctx.drawImage(shamrockImage, 10, 10, 100, 100); // Top left corner
     ctx.drawImage(shamrockImage, canvas.width / scale - 110, 10, 100, 100); // Top right corner
     ctx.drawImage(shamrockImage, 10, canvas.height / scale - 110, 100, 100); // Bottom left corner
@@ -205,6 +258,7 @@ function drawOnMainCanvas(phrases) {
 }
 
 
+
 // Adjust event listeners as needed
 const canvasCreate = document.getElementById('create-canvas');
 canvasCreate.addEventListener('click', function (event) {
@@ -214,7 +268,6 @@ canvasCreate.addEventListener('click', function (event) {
   drawOnMainCanvas(phrases); // Pass the array to the drawing function
   document.getElementById('download-link').style.display = 'block';
 });
-
 
 // Adjust the "Download Image" link event listener as before
 document.getElementById('download-link').addEventListener('click', function () {
