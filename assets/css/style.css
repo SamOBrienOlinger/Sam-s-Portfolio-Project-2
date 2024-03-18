@@ -316,3 +316,46 @@ footer p {
 footer h2 {
     color: #169b62;
 }
+
+.list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .list li {
+    margin-bottom: 10px;
+  }
+  
+  .steps img {
+    vertical-align: middle;
+    margin-right: 5px; /* Adjust this value as needed */
+    max-height: 40px; /* Ensures the images have the same height as in the provided code snippet */
+    width: auto; /* Allows the width to adjust proportionally */
+  }
+
+  #history {
+    height: 50vh;
+    width: 100%;
+    background-image: url(..//css/Images/happy-leps.png);
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+    animation-name: lephex-zoom;
+    animation-duration: 9s;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+}
+
+@keyframes lephex-zoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1); /* Back to the original size */
+    }
+}
+  

@@ -104,6 +104,7 @@ buttonFinal.addEventListener("click", (e) => {
 
   if (checkName()) {
     genHex();
+    generateUniqueLink(); // Generate unique link when the final button is clicked
   }
 
 });
@@ -131,6 +132,69 @@ function genHex() {
   finalPhrase.innerHTML = `${name} ${FIRST_PHRASE.innerHTML} ${SECOND_PHRASE.innerHTML} ${THIRD_PHRASE.innerHTML}`;
   document.getElementById('create-canvas').style.display = 'block';
 }
+
+// **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
+function generateUniqueLink() {
+    // Generate a unique link (example implementation)
+    const uniqueLink = 'https://example.com/' + Math.floor(Math.random() * 10000000000000000);
+
+    // Log the generated unique link to the console
+    console.log('Generated unique link:', uniqueLink);
+
+    // Share unique link via social media platforms
+    const facebookShareLink = document.getElementById('facebook-share');
+    if (facebookShareLink) {
+        facebookShareLink.href = 'https://facebook.com/share?url=' + encodeURIComponent(uniqueLink);
+    }
+
+    const twitterShareLink = document.getElementById('twitter-share');
+    if (twitterShareLink) {
+        twitterShareLink.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(uniqueLink);
+    }
+
+    const instagramShareLink = document.getElementById('instagram-share');
+    if (instagramShareLink) {
+        instagramShareLink.href = 'https://instagram.com/share?url=' + encodeURIComponent(uniqueLink);
+    }
+
+    const whatsappShareLink = document.getElementById('whatsapp-share');
+    if (whatsappShareLink) {
+        whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
+    }
+}
+
+// Assuming the HTML structure contains social media share buttons with IDs:
+// facebook-share, twitter-share, instagram-share, whatsapp-share
+// Adjust the IDs accordingly if they are different.
+
+// Call the generateUniqueLink function when the final button is clicked
+buttonFinal.addEventListener('click', generateUniqueLink);
+
+// Function to draw on the main canvas
+function drawOnMainCanvas(finalPhrase) {
+    const canvas = document.getElementById('canvas');
+    if (!canvas) {
+        console.error('Canvas element not found!');
+        return;
+    }
+    canvas.style.display = 'block'; // Make sure the canvas is visible
+    const ctx = canvas.getContext('2d');
+  
+    // Clear the canvas before drawing new content
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    // Your existing drawing logic here, for example:
+    ctx.fillStyle = '#000'; // Black color for the text
+    ctx.font = '20px Arial'; // Example font style
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
+  
+    const shamrockImage = new Image();
+    shamrockImage.onload = function() {
+        ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust as needed
+    };
+    shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
 
 function prepareFinalPhrase() {
   const name = document.getElementById('name').value;
@@ -215,7 +279,6 @@ canvasCreate.addEventListener('click', function (event) {
   document.getElementById('download-link').style.display = 'block';
 });
 
-
 // Adjust the "Download Image" link event listener as before
 document.getElementById('download-link').addEventListener('click', function () {
   console.log('we are here')
@@ -234,3 +297,4 @@ document.getElementById('download-link').addEventListener('click', function () {
   // Show social media icons for further action
   document.querySelector('.social-networks').style.display = 'block';
 });
+
