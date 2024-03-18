@@ -198,7 +198,31 @@ function drawOnMainCanvas(finalPhrase) {
 }
 
 // Adjust event listeners as needed
-const canvas = document.getElementById('canvas');
-canvas.addEventListener('click', function() {
-    drawOnMainCanvas('Your custom text here');
+const canvasCreate = document.getElementById('create-canvas');
+canvasCreate.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    let finalPhrase = document.getElementById('finalResult').innerText.trim();
+  
+    drawOnMainCanvas(finalPhrase); // Call this function with the final phrase
+    document.getElementById('download-link').style.display = 'block';
 });
+
+// Adjust the "Download Image" link event listener as before
+document.getElementById('download-link').addEventListener('click', function() {
+    console.log('we are here')
+    const canvas = document.getElementById('canvas');
+    // Use the original MIME type without replacement to ensure compatibility
+    const image = canvas.toDataURL('image/png');
+  
+    // Create a temporary link to trigger the download
+    const link = document.createElement('a');
+    link.download = 'canvas-image.png';
+    link.href = image;
+    document.body.appendChild(link); // Append to body to ensure visibility in the DOM
+    link.click();
+    document.body.removeChild(link); // Clean up by removing the element after clicking
+  
+    // Show social media icons for further action
+    document.querySelector('.social-networks').style.display = 'block';
+  });
+
