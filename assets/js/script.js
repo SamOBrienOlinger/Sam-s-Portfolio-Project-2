@@ -133,49 +133,6 @@ function genHex() {
   document.getElementById('create-canvas').style.display = 'block';
 }
 
-// **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
-function generateUniqueLink() {
-    // Step 1: Clone the original canvas element
-    const originalCanvas = document.getElementById('canvas');
-    const clonedCanvas = originalCanvas.cloneNode();
-
-    // Step 2: Render the content of the cloned canvas to an image using toDataURL()
-    const canvasDataURL = clonedCanvas.toDataURL();
-
-    // Step 3: Generate a unique URL for the image using the data URL
-    const uniqueLink = 'https://samobrienolinger.github.io/The-Irish-Hexanator/image/' + Math.floor(Math.random() * 10000000000000000);
-
-    // Step 4: Set the cloned canvas's src attribute to the generated data URL
-    clonedCanvas.src = canvasDataURL;
-
-    // Append the cloned canvas to the DOM if needed
-    document.body.appendChild(clonedCanvas);
-
-    console.log('Generated unique link:', uniqueLink);
-
-
-    // Share unique link via social media platforms
-    const facebookShareLink = document.getElementById('facebook-share');
-    if (facebookShareLink) {
-        facebookShareLink.href = 'https://facebook.com/share?url=' + encodeURIComponent(uniqueLink);
-    }
-
-    const twitterShareLink = document.getElementById('twitter-share');
-    if (twitterShareLink) {
-        twitterShareLink.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(uniqueLink);
-    }
-
-    const instagramShareLink = document.getElementById('instagram-share');
-    if (instagramShareLink) {
-        instagramShareLink.href = 'https://instagram.com/share?url=' + encodeURIComponent(uniqueLink);
-    }
-
-    const whatsappShareLink = document.getElementById('whatsapp-share');
-    if (whatsappShareLink) {
-        whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
-    }
- }
-
 // Assuming the HTML structure contains social media share buttons with IDs:
 // facebook-share, twitter-share, instagram-share, whatsapp-share
 // Adjust the IDs accordingly if they are different.
@@ -257,8 +214,6 @@ function drawOnMainCanvas(phrases) {
   }
 }
 
-
-
 // Adjust event listeners as needed
 const canvasCreate = document.getElementById('create-canvas');
 canvasCreate.addEventListener('click', function (event) {
@@ -287,3 +242,45 @@ document.getElementById('download-link').addEventListener('click', function () {
   // Show social media icons for further action
   document.querySelector('.social-networks').style.display = 'block';
 });
+
+// **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
+function generateUniqueLink() {
+  // Step 1: Clone the original canvas element
+  const originalCanvas = document.getElementById('canvas');
+  const clonedCanvas = originalCanvas.cloneNode();
+
+  // Step 2: Render the content of the cloned canvas to an image using toDataURL()
+  const canvasDataURL = clonedCanvas.toDataURL();
+
+  // Step 3: Generate a unique URL for the image using the data URL
+  const uniqueLink = 'https://samobrienolinger.github.io/The-Irish-Hexanator/image/' + Math.floor(Math.random() * 10000000000000000);
+
+  // Step 4: Set the cloned canvas's src attribute to the generated data URL
+  clonedCanvas.src = canvasDataURL;
+
+  // Append the cloned canvas to the DOM if needed
+  document.body.appendChild(clonedCanvas);
+
+  console.log('Generated unique link:', uniqueLink);
+
+  // Share unique link via social media platforms
+  const facebookShareLink = document.getElementById('facebook-share');
+  if (facebookShareLink) {
+      facebookShareLink.href = 'https://facebook.com/share?url=' + encodeURIComponent(uniqueLink);
+  }
+
+  const twitterShareLink = document.getElementById('twitter-share');
+  if (twitterShareLink) {
+      twitterShareLink.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(uniqueLink);
+  }
+
+  const instagramShareLink = document.getElementById('instagram-share');
+  if (instagramShareLink) {
+      instagramShareLink.href = 'https://instagram.com/share?url=' + encodeURIComponent(uniqueLink);
+  }
+
+  const whatsappShareLink = document.getElementById('whatsapp-share');
+  if (whatsappShareLink) {
+      whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
+  }
+}
