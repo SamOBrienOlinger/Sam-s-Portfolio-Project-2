@@ -103,6 +103,7 @@ buttonFinal.addEventListener("click", (e) => {
   
   if (checkName()) {
     genHex();
+    generateUniqueLink(); // Generate unique link when the final button is clicked
   }
 
 });
@@ -132,55 +133,44 @@ function genHex() {
   document.getElementById('create-canvas').style.display = 'block';
 }
 
-// function openPopupWithCanvas(finalPhrase) {
-//     // Open a new mini window
-//     const popup = window.open('', 'popup', 'width=600,height=400');
+// **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
+function generateUniqueLink() {
+    // Generate a unique link (example implementation)
+    const uniqueLink = 'https://example.com/' + Math.floor(Math.random() * 10000000000000000);
 
-//     // Add some basic HTML structure to the popup
-//     popup.document.write('<!DOCTYPE html><html lang="en"><head><title>Hex Canvas</title></head><body></body></html>');
+    // Log the generated unique link to the console
+    console.log('Generated unique link:', uniqueLink);
 
-//     // Create a canvas element
-//     const canvas = popup.document.createElement('canvas');
-//     canvas.width = 580; // Adjust as per your requirement
-//     canvas.height = 380; // Adjust as per your requirement
-//     popup.document.body.appendChild(canvas);
+    // Share unique link via social media platforms
+    const facebookShareLink = document.getElementById('facebook-share');
+    if (facebookShareLink) {
+        facebookShareLink.href = 'https://facebook.com/share?url=' + encodeURIComponent(uniqueLink);
+    }
 
-//     // Style the canvas (and potentially the window) here
-//     // For example, setting a background color or adding a CSS file
-//     canvas.style.background = '#fff'; // Example background color
+    const twitterShareLink = document.getElementById('twitter-share');
+    if (twitterShareLink) {
+        twitterShareLink.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(uniqueLink);
+    }
 
-//     // Get the canvas context to draw
-//     const ctx = canvas.getContext('2d');
+    const instagramShareLink = document.getElementById('instagram-share');
+    if (instagramShareLink) {
+        instagramShareLink.href = 'https://instagram.com/share?url=' + encodeURIComponent(uniqueLink);
+    }
 
-//     // Set your styles for the text
-//     ctx.fillStyle = '#000'; // Black color for the text
-//     ctx.font = '20px Arial'; // Example font style
-//     ctx.textAlign = 'center';
-//     ctx.textBaseline = 'middle';
+    const whatsappShareLink = document.getElementById('whatsapp-share');
+    if (whatsappShareLink) {
+        whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
+    }
+}
 
-//     // Draw the text on the canvas
-//     ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
+// Assuming the HTML structure contains social media share buttons with IDs:
+// facebook-share, twitter-share, instagram-share, whatsapp-share
+// Adjust the IDs accordingly if they are different.
 
-//     const shamrockImage = new Image();
-//     shamrockImage.onload = function() {
-//         // Example: draw shamrock in the top-left corner of the canvas
-//         ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust position and size as needed
-//     };
-//     shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
-// }
+// Call the generateUniqueLink function when the final button is clicked
+buttonFinal.addEventListener('click', generateUniqueLink);
 
-// // Assuming you have the YouTube link event listener set up to open this popup
-// const canvasCreate = document.getElementById('create-canvas');
-// canvasCreate.addEventListener('click', function(event) {
-//     event.preventDefault(); // Prevent the default link behavior
-//   // Assuming 'finalPhrase' is the text you want to display on the canvas
-//   let finalPhrase = document.getElementById('finalResult').innerText.trim();
-
-//   openPopupWithCanvas(finalPhrase); // Call this function with the final phrase
-//   document.getElementById('download-link').style.display = 'block';
-
-//   // Event listener for the "Download Image" link
-//   document.getElementById('download-link').addEventListener('click', function() {
+// Function to draw on the main canvas
 function drawOnMainCanvas(finalPhrase) {
     const canvas = document.getElementById('canvas');
     if (!canvas) {
@@ -208,48 +198,7 @@ function drawOnMainCanvas(finalPhrase) {
 }
 
 // Adjust event listeners as needed
-const canvasCreate = document.getElementById('create-canvas');
-canvasCreate.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    let finalPhrase = document.getElementById('finalResult').innerText.trim();
-  
-    drawOnMainCanvas(finalPhrase); // Call this function with the final phrase
-    document.getElementById('download-link').style.display = 'block';
+const canvas = document.getElementById('canvas');
+canvas.addEventListener('click', function() {
+    drawOnMainCanvas('Your custom text here');
 });
-
-// Adjust the "Download Image" link event listener as before
-document.getElementById('download-link').addEventListener('click', function() {
-    console.log('we are here')
-    const canvas = document.getElementById('canvas');
-    // Use the original MIME type without replacement to ensure compatibility
-    const image = canvas.toDataURL('image/png');
-  
-    // Create a temporary link to trigger the download
-    const link = document.createElement('a');
-    link.download = 'canvas-image.png';
-    link.href = image;
-    document.body.appendChild(link); // Append to body to ensure visibility in the DOM
-    link.click();
-    document.body.removeChild(link); // Clean up by removing the element after clicking
-  
-    // Show social media icons for further action
-    document.querySelector('.social-networks').style.display = 'block';
-  });
-
-
-// document.getElementById('downloadBtn').addEventListener('click', function() {
-//   const canvas = document.getElementById('yourCanvasElement');
-//   // Use the original MIME type without replacement to ensure compatibility
-//   const image = canvas.toDataURL('image/png');
-
-//   // Create a temporary link to trigger the download
-//   const link = document.createElement('a');
-//   link.download = 'canvas-image.png';
-//   link.href = image;
-//   document.body.appendChild(link); // Append to body to ensure visibility in the DOM
-//   link.click();
-//   document.body.removeChild(link); // Clean up by removing the element after clicking
-
-//   // Show social media icons for further action
-//   document.querySelector('.social-networks').style.display = 'block';
-// });
