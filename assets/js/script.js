@@ -27,7 +27,8 @@ let phraseListThree = [
   "a lake of boiling stout!",
   "an ocean of poison whiskey for infinity!",
   "rotten potatoes for ten years!",
-  "clothes with itchy labels!"
+  "clothes with itchy labels!",
+  "a severe allergy to Guinness!"
 ];
 
 let phraseListIndexMap = [phraseListOne, phraseListTwo, phraseListThree];
@@ -45,9 +46,9 @@ let generateCurse = function (e) {
 
   if (buttonIndex != 2) {
     CURSE_BUTTONS[buttonIndex + 1].classList.remove("disabled");
-    } else {
-      buttonFinal.classList.remove("disabled");
-    }
+  } else {
+    buttonFinal.classList.remove("disabled");
+  }
 };
 
 // **** GENERATE RANDOM PHRASE FROM ARRAYS CODE ****
@@ -70,37 +71,37 @@ NAME_ELEMENT.addEventListener("focusout", () =>
 
 // Enable the first curse button when the name is confirmed
 const confirmNameButton = document.getElementById('confirmName');
-confirmNameButton.addEventListener('click', function() {
-    const firstCurseButton = document.getElementById('firstButton');
-    firstCurseButton.disabled = false; // Enable the first 'curse' button
-    document.getElementById('step2').style.display = 'block'; // Show the second step
+confirmNameButton.addEventListener('click', function () {
+  const firstCurseButton = document.getElementById('firstButton');
+  firstCurseButton.disabled = false; // Enable the first 'curse' button
+  document.getElementById('step2').style.display = 'block'; // Show the second step
 });
 
 // Sequentially reveal each step and enable the next button
 const curseButtons = document.querySelectorAll('.curse-button');
-curseButtons.forEach(function(button, index) {
-    button.addEventListener('click', function() {
-        this.disabled = true; // Disable the current button after click
+curseButtons.forEach(function (button, index) {
+  button.addEventListener('click', function () {
+    this.disabled = true; // Disable the current button after click
 
-        // Calculate the ID of the next step based on the current button's data-index
-        const nextStepId = 'step' + (parseInt(this.getAttribute('data-index'), 10) + 2);
-        const nextStep = document.getElementById(nextStepId);
-        if (nextStep) {
-            nextStep.style.display = 'block'; // Show the next step
+    // Calculate the ID of the next step based on the current button's data-index
+    const nextStepId = 'step' + (parseInt(this.getAttribute('data-index'), 10) + 2);
+    const nextStep = document.getElementById(nextStepId);
+    if (nextStep) {
+      nextStep.style.display = 'block'; // Show the next step
 
-            // Find the next curse button within the next step and enable it
-            const nextButton = nextStep.querySelector('.curse-button');
-            if (nextButton) {
-                nextButton.disabled = false;
-            }
-        }
-    });
+      // Find the next curse button within the next step and enable it
+      const nextButton = nextStep.querySelector('.curse-button');
+      if (nextButton) {
+        nextButton.disabled = false;
+      }
+    }
+  });
 });
 
 // **** GENERATE FULL HEX CODE ****
 const buttonFinal = document.getElementById("finalButton");
 buttonFinal.addEventListener("click", (e) => {
-  
+
   if (checkName()) {
     genHex();
     generateUniqueLink(); // Generate unique link when the final button is clicked
@@ -111,9 +112,9 @@ buttonFinal.addEventListener("click", (e) => {
 // **** ENSURE USER INPUTS TEXT TO START HEX CODE ****
 function checkName() {
   if (document.getElementById("name").value !== "") {
-    
+
     return true;
-  } 
+  }
 
   alert("please enter your Nemesis' name");
   return false;
@@ -128,49 +129,59 @@ refreshPage.addEventListener("click", (e) => {
 function genHex() {
   let finalPhrase = document.getElementById("finalResult");
   let name = document.getElementById("name").value;
-
   finalPhrase.innerHTML = `${name} ${FIRST_PHRASE.innerHTML} ${SECOND_PHRASE.innerHTML} ${THIRD_PHRASE.innerHTML}`;
   document.getElementById('create-canvas').style.display = 'block';
 }
 
-// **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
-function generateUniqueLink() {
-    // Generate a unique link (example implementation)
-    const uniqueLink = 'https://example.com/' + Math.floor(Math.random() * 10000000000000000);
+// function openPopupWithCanvas(finalPhrase) {
+//     // Open a new mini window
+//     const popup = window.open('', 'popup', 'width=600,height=400');
 
-    // Log the generated unique link to the console
-    console.log('Generated unique link:', uniqueLink);
+//     // Add some basic HTML structure to the popup
+//     popup.document.write('<!DOCTYPE html><html lang="en"><head><title>Hex Canvas</title></head><body></body></html>');
 
-    // Share unique link via social media platforms
-    const facebookShareLink = document.getElementById('facebook-share');
-    if (facebookShareLink) {
-        facebookShareLink.href = 'https://facebook.com/share?url=' + encodeURIComponent(uniqueLink);
-    }
+//     // Create a canvas element
+//     const canvas = popup.document.createElement('canvas');
+//     canvas.width = 580; // Adjust as per your requirement
+//     canvas.height = 380; // Adjust as per your requirement
+//     popup.document.body.appendChild(canvas);
 
-    const twitterShareLink = document.getElementById('twitter-share');
-    if (twitterShareLink) {
-        twitterShareLink.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(uniqueLink);
-    }
+//     // Style the canvas (and potentially the window) here
+//     // For example, setting a background color or adding a CSS file
+//     canvas.style.background = '#fff'; // Example background color
 
-    const instagramShareLink = document.getElementById('instagram-share');
-    if (instagramShareLink) {
-        instagramShareLink.href = 'https://instagram.com/share?url=' + encodeURIComponent(uniqueLink);
-    }
+//     // Get the canvas context to draw
+//     const ctx = canvas.getContext('2d');
 
-    const whatsappShareLink = document.getElementById('whatsapp-share');
-    if (whatsappShareLink) {
-        whatsappShareLink.href = 'whatsapp://send?text=' + encodeURIComponent(uniqueLink);
-    }
-}
+//     // Set your styles for the text
+//     ctx.fillStyle = '#000'; // Black color for the text
+//     ctx.font = '20px Arial'; // Example font style
+//     ctx.textAlign = 'center';
+//     ctx.textBaseline = 'middle';
 
-// Assuming the HTML structure contains social media share buttons with IDs:
-// facebook-share, twitter-share, instagram-share, whatsapp-share
-// Adjust the IDs accordingly if they are different.
+//     // Draw the text on the canvas
+//     ctx.fillText(finalPhrase, canvas.width / 2, canvas.height / 2);
 
-// Call the generateUniqueLink function when the final button is clicked
-buttonFinal.addEventListener('click', generateUniqueLink);
+//     const shamrockImage = new Image();
+//     shamrockImage.onload = function() {
+//         // Example: draw shamrock in the top-left corner of the canvas
+//         ctx.drawImage(shamrockImage, 10, 10, 50, 50); // Adjust position and size as needed
+//     };
+//     shamrockImage.src = 'assets/css/Images/green-shamrock-no-bg.png';
+// }
 
-// Function to draw on the main canvas
+// // Assuming you have the YouTube link event listener set up to open this popup
+// const canvasCreate = document.getElementById('create-canvas');
+// canvasCreate.addEventListener('click', function(event) {
+//     event.preventDefault(); // Prevent the default link behavior
+//   // Assuming 'finalPhrase' is the text you want to display on the canvas
+//   let finalPhrase = document.getElementById('finalResult').innerText.trim();
+
+//   openPopupWithCanvas(finalPhrase); // Call this function with the final phrase
+//   document.getElementById('download-link').style.display = 'block';
+
+//   // Event listener for the "Download Image" link
+//   document.getElementById('download-link').addEventListener('click', function() {
 function drawOnMainCanvas(finalPhrase) {
     const canvas = document.getElementById('canvas');
     if (!canvas) {
@@ -199,13 +210,14 @@ function drawOnMainCanvas(finalPhrase) {
 
 // Adjust event listeners as needed
 const canvasCreate = document.getElementById('create-canvas');
-canvasCreate.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    let finalPhrase = document.getElementById('finalResult').innerText.trim();
-  
-    drawOnMainCanvas(finalPhrase); // Call this function with the final phrase
-    document.getElementById('download-link').style.display = 'block';
+canvasCreate.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent the default link behavior
+  let phrases = prepareFinalPhrase(); // Get the array of phrases
+  console.log(phrases)
+  drawOnMainCanvas(phrases); // Pass the array to the drawing function
+  document.getElementById('download-link').style.display = 'block';
 });
+
 
 // Adjust the "Download Image" link event listener as before
 document.getElementById('download-link').addEventListener('click', function() {
@@ -225,4 +237,3 @@ document.getElementById('download-link').addEventListener('click', function() {
     // Show social media icons for further action
     document.querySelector('.social-networks').style.display = 'block';
   });
-
