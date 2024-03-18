@@ -104,6 +104,8 @@ buttonFinal.addEventListener("click", (e) => {
 
   if (checkName()) {
     genHex();
+    buttonFinal.disabled = true;
+    buttonFinal.classList.remove('active-flicker');
     generateUniqueLink(); // Generate unique link when the final button is clicked
   }
 
@@ -214,6 +216,10 @@ function drawOnMainCanvas(phrases) {
     ctx.fillText(phrases[i], canvas.width / (2 * scale), y);
     y += 32;
   }
+
+  // Draw the page URL
+  ctx.font = '12px Arial'; // Smaller font for the URL
+  ctx.fillText(window.location.href, canvas.width / (2 * scale), canvas.height / scale - 20); // Position the URL at the bottom of the canvas
 }
 
 // Adjust event listeners as needed
@@ -221,14 +227,13 @@ const canvasCreate = document.getElementById('create-canvas');
 canvasCreate.addEventListener('click', function (event) {
   event.preventDefault(); // Prevent the default link behavior
   let phrases = prepareFinalPhrase(); // Get the array of phrases
-  console.log(phrases)
   drawOnMainCanvas(phrases); // Pass the array to the drawing function
   document.getElementById('download-link').style.display = 'block';
+  document.querySelector('.social-networks').style.display = 'block';
 });
 
 // Adjust the "Download Image" link event listener as before
 document.getElementById('download-link').addEventListener('click', function () {
-  console.log('we are here')
   const canvas = document.getElementById('canvas');
   // Use the original MIME type without replacement to ensure compatibility
   const image = canvas.toDataURL('image/png');
@@ -242,7 +247,6 @@ document.getElementById('download-link').addEventListener('click', function () {
   document.body.removeChild(link); // Clean up by removing the element after clicking
 
   // Show social media icons for further action
-  document.querySelector('.social-networks').style.display = 'block';
 });
 
 // **** SOCIAL MEDIA SHARE FUNCTIONALITY ****
