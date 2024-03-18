@@ -302,6 +302,13 @@ footer {
     width: 100%;
 }
 
+#canvas {
+    width: 50%; /* or any size that fits your layout */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the canvas */
+}
+
 footer p {
     color: whitesmoke;
 }
