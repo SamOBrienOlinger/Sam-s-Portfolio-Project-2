@@ -107,26 +107,66 @@ section {
     margin-right: 0.5em; 
 }
 
-a {
-    color: green;
+a, sam {
+    color: #169b62;
+    font-size: larger;
+}
+
+sam {
+    color: whitesmoke;
 }
 
 a, button {
     cursor: pointer;
 }
 
+#create-canvas {
+    font-size: larger;
+}
+
 .glow-text {
-    animation: glow-animation 1.5s infinite alternate; /* Quicker flicker */
+    color: whitesmoke; /* Text color */
+    animation: glow-animation 1.5s infinite alternate;
+    text-shadow: 
+      -1px -1px 0 #000, /* Top-left shadow */
+      1px -1px 0 #000, /* Top-right shadow */
+      -1px 1px 0 #000, /* Bottom-left shadow */
+      1px 1px 0 #000, /* Bottom-right shadow */
+      /* Additional shadows for a more defined outline */
+      -2px 0 0 #000,
+      2px 0 0 #000,
+      0 -2px 0 #000,
+      0 2px 0 #000,
+      /* Glow effect starts here */
+      0 0 5px rgba(255, 255, 255, 0.2),
+      0 0 10px rgba(255, 165, 0, 0.2),
+      0 0 15px rgba(22, 155, 98, 0.2),
+      0 0 20px rgba(255, 165, 0, 0.2);
   }
   
   @keyframes glow-animation {
     from {
-      text-shadow: 0 0 0px #fff;
+      text-shadow: 
+        -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+        -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000,
+        /* Glow effect intensifies */
+        0 0 8px rgba(255, 255, 255, 0.3),
+        0 0 18px rgba(255, 165, 0, 0.3),
+        0 0 28px rgba(22, 155, 98, 0.3),
+        0 0 38px rgba(255, 165, 0, 0.3);
     }
     to {
-      text-shadow: 0 0 3px #fff;
+      text-shadow: 
+        -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+        -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000,
+        /* Glow effect at its peak */
+        0 0 10px rgba(255, 255, 255, 0.5),
+        0 0 20px rgba(255, 165, 0, 0.5),
+        0 0 30px rgba(22, 155, 98, 0.5),
+        0 0 40px rgba(255, 165, 0, 0.5);
     }
   }
+  
   
   .active-flicker {
     animation: active-flicker 0.3s infinite alternate;
@@ -204,6 +244,7 @@ button#refresh p {
     padding: 0;
     text-align: center;
     margin-top: 1.5rem;
+    font-size: larger;
 }
 
 .social-networks li {
@@ -222,6 +263,63 @@ button#refresh p {
     opacity: 0.5;
     pointer-events: none;
 }
+
+#history-bg {
+    background-image: url('Images/subtle-castle-bg.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }  
+
+.question-marks {
+display: flex;
+justify-content: space-around; /* Distributes the question marks evenly */
+margin: 20px 0; /* Adjust as needed */
+}
+
+.question-mark img {
+width: 50px; /* Adjust based on your image size */
+animation-name: wobble-grow-shrink;
+animation-duration: var(--animation-duration);
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;
+/* Randomize animation duration and delay for each question mark */
+--animation-duration: calc(4s + var(--random-delay) * 1s);
+--random-delay: calc(2 + (3 * rand()));
+}
+
+@keyframes wobble-grow-shrink {
+0%, 100% {
+    transform: rotate(0deg) scale(1);
+}
+25% {
+    transform: rotate(-5deg) scale(1.1);
+}
+50% {
+    transform: rotate(5deg) scale(0.9);
+}
+75% {
+    transform: rotate(-5deg) scale(1.05);
+}
+}
+
+.question-mark:nth-child(1) img {
+    animation-duration: 5s;
+    animation-delay: 0.2s;
+  }
+  
+  .question-mark:nth-child(2) img {
+    animation-duration: 4s;
+    animation-delay: 0.5s;
+  }
+  
+  .question-mark:nth-child(3) img {
+    animation-duration: 6s;
+    animation-delay: 0.7s;
+  }
+  
 
 .about-aj,
 .about-sam {
@@ -259,7 +357,7 @@ button#refresh p {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 50px;
+    height: 120px;
 }
 
 .irish-flag-navbar .nav-section,
@@ -272,10 +370,11 @@ button#refresh p {
 }
 
 .irish-flag-navbar img {
-    max-height: 40px; 
-    width: auto;
-    margin: 0 auto; 
-}
+    vertical-align: middle;
+    margin-right: 5px; /* Adjust this value as needed */
+    max-height: 40px; /* Ensures the images have the same height as in the provided code snippet */
+    width: auto; /* Allows the width to adjust proportionally */
+  }
 
 .green {
     background-color: #169b62;
@@ -288,13 +387,6 @@ button#refresh p {
 .orange {
     background-color: #ff883e;
 }
-
-.irish-flag-navbar img {
-    max-height: 40px;
-    width: auto;
-    margin: 0 auto;
-}
-
 
 .shamrock {
     width: 50% !important;
@@ -326,7 +418,7 @@ footer {
 }
 
 #canvas {
-    width: 50%; /* or any size that fits your layout */
+    width: 75%;
     height: auto;
     display: block;
     margin: 0 auto; /* Center the canvas */
@@ -350,6 +442,13 @@ footer h2 {
   }
   
   .steps img {
+    vertical-align: middle;
+    margin-right: 5px; /* Adjust this value as needed */
+    max-height: 40px; /* Ensures the images have the same height as in the provided code snippet */
+    width: auto; /* Allows the width to adjust proportionally */
+  }
+
+  .l-who img, .l-what img, .l-where img, .l-when img, .l-how img {
     vertical-align: middle;
     margin-right: 5px; /* Adjust this value as needed */
     max-height: 40px; /* Ensures the images have the same height as in the provided code snippet */
