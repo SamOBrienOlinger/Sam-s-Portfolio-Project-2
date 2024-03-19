@@ -135,6 +135,7 @@ function genHex() {
   document.getElementById('create-canvas').style.display = 'block';
   document.getElementById('refresh').style.display = 'block';
   document.getElementById('refresh').classList.add('glow-text'); 
+  document.querySelector('.sparkle-background').style.display = 'block';
 }
 
 // Assuming the HTML structure contains social media share buttons with IDs:

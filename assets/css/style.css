@@ -185,6 +185,67 @@ a, button {
     width: fit-content;
 }
 
+.sparkle-background {
+    position: relative;
+    width: 100%; /* Adjust based on your requirement */
+    background-color: #000; /* Or any other color */
+    overflow: hidden;
+}
+
+.sparkle-background::before,
+.sparkle-background::after,
+.finalResult::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    /* filter: blur(8px); Adjust the blur intensity as needed */
+}
+
+.sparkle-background::before {
+    background-image: url('Images/small-stars-1.png'); /* Path to your first set of stars */
+    animation: sparkle1 5s infinite; /* Adjust timing for different sparkle frequencies */
+}
+
+.sparkle-background::after {
+    background-image: url('Images/large-green-stars-1.png'); /* Path to your second set of stars */
+    animation: sparkle2 3s infinite; /* Adjust timing for different sparkle frequencies */
+}
+
+.finalResult::before {
+    background-image: url('Images/small-stars-2.png'); /* Path to your third set of stars */
+    animation: sparkle3 4s infinite; /* Adjust timing for different sparkle frequencies */
+    z-index: -1;
+}
+
+.finalResult {
+    position: relative;
+    z-index: 100; 
+    color: white;
+    padding: 20px;
+}
+
+/* Keyframes for sparkling effects */
+@keyframes sparkle1 {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes sparkle2 {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes sparkle3 {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+}
+
+
 .output {
     margin: auto;
     margin-top: 1rem;
