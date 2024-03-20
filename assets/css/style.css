@@ -121,7 +121,11 @@ a, button {
 }
 
 #create-canvas {
-    font-size: larger;
+    font-size: 1.8rem;
+}
+
+#download-link, sam {
+    font-size: 1.6rem;
 }
 
 .glow-text {
@@ -166,7 +170,6 @@ a, button {
         0 0 40px rgba(255, 165, 0, 0.5);
     }
   }
-  
   
   .active-flicker {
     animation: active-flicker 0.3s infinite alternate;
@@ -318,6 +321,7 @@ button#refresh p {
 .far {
     font-weight: 400;
     color: #169b62;
+    padding: 20px;
 }
 
 .disabled {
@@ -576,4 +580,12 @@ footer h2 {
     100% {
         transform: scale(1); /* Back to the original size */
     }
+}
+
+#confirmName {
+    font-size: 2rem;
+    font-style: italic;
+    color: black;
+    background-color: whitesmoke;
+    margin-top: 10px;
 }
