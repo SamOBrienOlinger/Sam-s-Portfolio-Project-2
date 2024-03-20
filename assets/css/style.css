@@ -541,4 +541,39 @@ footer h2 {
         transform: scale(1); /* Back to the original size */
     }
 }
-  
+
+#darby {
+    height: 20vh;
+    width: 100%;
+    background-image: url(../css/Images/darby.jpeg);
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+}
+
+#first-irish {
+    height: 100vh;
+    width: 100%;
+    background-image: url(..//css/Images/skull-man.png);
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+    animation-name: lephex-zoom;
+    animation-duration: 15s;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+}
+
+@keyframes lephex-zoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1); /* Back to the original size */
+    }
+}
