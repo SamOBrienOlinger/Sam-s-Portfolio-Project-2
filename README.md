@@ -1,6 +1,8 @@
 # **The Irish Hexanator**
 
-For my second Portfolio Project submitted as part of the Code Institute's Diploma in full-stack software development course, I created a fun and engaging game-like random word generator called 'The Irish Hexanator'. 
+'The Irish Hexanator' is the product of a collaboration between [AJ McCredie](https://github.com/ajmccredie) and [Sam O'Brien-Olinger](https://github.com/SamOBrienOlinger).
+
+The project evolved out of my second Portfolio Project submitted to the Code Institute as part of it's Diploma in full-stack software development course. This fun and engaging game-like site is essentially random word generator.
 
 ![Website on multiple screens](assets/README.md-images/README.md-multiple-screens.png)
 
@@ -253,6 +255,7 @@ As a starting point for developing this project, I began with a concept for a ra
 ### **Content**
 
 - The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+- Link to [RTE documentary](https://www.rte.ie/player/series/the-burren-heart-of-stone/SI0000008368?epguid=IP000064777) about historical origins of Irish gene pool.
      
    
  - **Images**
