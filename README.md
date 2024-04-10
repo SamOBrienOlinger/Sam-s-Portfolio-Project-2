@@ -2,9 +2,18 @@
 
 'The Irish Hexanator' is the product of a collaboration between [AJ McCredie](https://github.com/ajmccredie) and [Sam O'Brien-Olinger](https://github.com/SamOBrienOlinger).
 
-The project evolved out of my second Portfolio Project submitted to the Code Institute as part of it's Diploma in full-stack software development course. This fun and engaging game-like site is essentially random word generator.
+The project evolved out of my second Portfolio Project submitted to the Code Institute as part of it's Diploma in full-stack software development course. This iteration of the the fun and engaging game-like site is a prime example of how the right combination of creativity and collaboration can result in innovation and evolution.
 
-![Website on multiple screens](assets/README.md-images/README.md-multiple-screens.png)
+#### **Evolution of UX/UI - before collaboration and after**
+
+  - **Before**
+
+![Original website on multiple screens](assets/README.md-images/README.md-multiple-screens.png)
+
+
+  - **After**
+
+![Current website on multiple screens](/assets/README.md-images/README.md-multiple-screens-new-version.png)
 
 - **[Click Here](https://samobrienolinger.github.io/The-Irish-Hexanator/)** to see the deployed website. 
 
